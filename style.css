@@ -1,15 +1,26 @@
 /* style.css */
 
+/* ================== */
+/* GLOBAL STYLES */
+/* ================== */
+:root {
+    --primary-color: #0070ba; /* Blue */
+    --secondary-color: #cc0000; /* Red */
+    --text-dark: #333;
+    --text-light: #555;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    /* Modern, clean font stack */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
-    padding: 0; /* Removed padding to allow header to span full width */
-    background-color: #f4f4f4;
-    color: #333;
+    padding: 0;
+    background-color: #f8f9fa; /* Lighter gray background */
+    color: var(--text-dark);
 }
 
 /* ================== */
-/* NEW HEADER STYLES */
+/* HEADER & NAV */
 /* ================== */
 header {
     background-color: #fff;
@@ -18,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: sticky; /* Makes the header stay at the top when scrolling */
+    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -26,7 +37,7 @@ header {
 .logo a {
     font-size: 1.8em;
     font-weight: bold;
-    color: #cc0000; /* Lobster red */
+    color: var(--secondary-color); /* Lobster red */
     text-decoration: none;
 }
 
@@ -43,20 +54,20 @@ nav li {
 
 nav a {
     text-decoration: none;
-    color: #555;
+    color: var(--text-light);
     font-weight: bold;
     font-size: 1.1em;
     padding-bottom: 5px;
 }
 
 nav a.active, nav a:hover {
-    color: #0070ba;
-    border-bottom: 2px solid #0070ba;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .cart-icon {
     font-size: 1.5em;
-    color: #333;
+    color: var(--text-dark);
     position: relative; /* Needed for positioning the count */
     cursor: pointer;
 }
@@ -65,7 +76,7 @@ nav a.active, nav a:hover {
     position: absolute;
     top: -8px;
     right: -12px;
-    background-color: #cc0000;
+    background-color: var(--secondary-color);
     color: white;
     font-size: 0.6em;
     font-weight: bold;
@@ -74,83 +85,191 @@ nav a.active, nav a:hover {
 }
 
 /* ================== */
-/* MAIN CONTENT STYLES */
+/* MAIN CONTENT */
 /* ================== */
-
-/* Renamed to 'main' and added padding-top */
 main.container {
-    max-width: 800px;
-    margin: 20px auto; /* Added margin-top */
-    background: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    max-width: 1000px; /* Wider for a more modern feel */
+    margin: 20px auto;
+    padding: 20px;
+    background: none; /* Removed white background */
+    box-shadow: none; /* Removed shadow, cards will have it */
 }
 
-/* Existing styles below... */
 h1 {
-    color: #cc0000;
+    color: var(--text-dark);
+    font-size: 2.8em;
+    font-weight: 700;
+    text-align: center;
     margin-bottom: 5px;
 }
 
+.subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--text-light);
+    margin-top: 0;
+}
+
 h2 {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-top: 25px;
+    text-align: center;
+    font-size: 2em;
+    color: var(--text-dark);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border: none; /* Removed old border */
 }
 
 .product-image {
     max-width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 12px;
     margin: 20px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
-.package {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 4px;
+/* ================== */
+/* TRUST FEATURES */
+/* ================== */
+.trust-features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; /* Allows wrapping on small screens */
+    margin: 40px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
 }
 
-.price {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #0070ba;
-    margin: 10px 0;
-}
-
-.shipping-note {
-    background-color: #fffacd;
+.feature {
+    flex-basis: 30%;
+    min-width: 200px; /* For wrap */
+    text-align: center;
     padding: 10px;
-    border: 1px dashed #daa520;
+}
+
+.feature i {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.feature h4 {
+    margin: 10px 0 5px 0;
+    font-size: 1.1em;
+    color: var(--text-dark);
+}
+
+.feature p {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+/* ================== */
+/* PRODUCT GRID */
+/* ================== */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column by default */
+    gap: 30px;
     margin-top: 20px;
 }
 
-.buy-button {
-    background-color: #0070ba;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* 2-column grid for screens 768px and wider */
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-.buy-button:hover {
+/* ================== */
+/* PACKAGE "CARD" */
+/* ================== */
+.package {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    padding: 30px;
+    display: flex; /* Makes footer items easy */
+    flex-direction: column;
+    height: 100%; /* Makes cards in a row same height */
+    text-align: center;
+}
+
+.package h3 {
+    font-size: 1.6em;
+    color: var(--text-dark);
+    margin: 0 0 10px 0;
+}
+
+.package-description {
+    font-size: 1em;
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.features-list {
+    text-align: left;
+    margin: 15px 0;
+    padding-left: 25px;
+    color: var(--text-light);
+    font-size: 0.95em;
+}
+
+.features-list li {
+    margin-bottom: 8px;
+    list-style-type: '🦞'; /* Fun! */
+    padding-left: 10px;
+}
+
+.package .price {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-top: auto; /* Pushes price to the bottom */
+    padding-top: 20px;
+}
+
+.package .buy-button {
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 600;
+    padding: 15px 0;
+    margin-top: 15px;
+    background-color: var(--primary-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.package .buy-button:hover {
     background-color: #00568c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 112, 186, 0.3);
+}
+
+/* ================== */
+/* OTHER STYLES */
+/* ================== */
+.shipping-note {
+    text-align: center;
+    background-color: #eef8ff;
+    padding: 15px;
+    border: 1px dashed var(--primary-color);
+    margin-top: 40px;
+    border-radius: 8px;
+    color: #444;
 }
 
 footer {
     text-align: center;
     padding: 20px;
     margin-top: 20px;
-    color: #777;
+    color: #999;
 }
 
-/* This is the full-screen "shadow" background */
+/* ================== */
+/* MODAL STYLES */
+/* ================== */
 .modal-hidden {
     display: none; /* Hides the modal by default */
     position: fixed;
@@ -192,7 +311,7 @@ footer {
 
 .modal-content h2 {
     margin-top: 0;
-    color: #333;
+    color: var(--text-dark);
 }
 
 #cart-items-list {
@@ -221,6 +340,6 @@ footer {
 }
 
 #checkout-button {
-    background-color: #0070ba; /* PayPal blue */
+    background-color: var(--primary-color); /* PayPal blue */
     color: white;
 }
