@@ -3,65 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultra-Fresh Live Lobster - Overnight Delivery</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
-        .container {
-            max-width: 800px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #cc0000;
-            margin-bottom: 5px;
-        }
-        h2 {
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 25px;
-        }
-        .product-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            margin: 20px 0;
-        }
-        .package {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #0070ba;
-            margin: 10px 0;
-        }
-        .shipping-note {
-            background-color: #fffacd;
-            padding: 10px;
-            border: 1px dashed #daa520;
-            margin-top: 20px;
-        }
-    </style>
+    <title>J&Z Trade Inc. - Live Lobster</title> <link rel="stylesheet" href="style.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+
+    <header>
+        <div class="logo">
+            <a href="index.html">J&Z Trade Inc.</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main class="container">
         <h1>🦞 Ultra-Fresh Live Lobster</h1>
         <p>— Guaranteed Live, Delivered Overnight to Your Door! —</p>
 
-        <img src="/lobster.png" alt="High-Quality Live Lobster" class="product-image">
+        <img src="lobsterpics/lobster.png" alt="High-Quality Live Lobster" class="product-image">
 
         <h2>Choose Your Package</h2>
 
@@ -69,17 +38,13 @@
             <h3>10 lb Live Lobster Package</h3>
             <p>Perfect for a family dinner or small gathering.</p>
             <div class="price" id="price-10lb">$169.00</div>
-            
-            <button class="buy-button" data-price="169" data-weight="10">Buy 10lb Package Now</button>
-        </div>
+            <button class="buy-button" data-price="169" data-weight="10">Add to Cart</button> </div>
 
         <div class="package">
             <h3>20 lb Live Lobster Package</h3>
             <p>Our best value package for large parties, events, or stocking up.</p>
             <div class="price" id="price-20lb">$299.00</div>
-            
-            <button class="buy-button" data-price="299" data-weight="20">Buy 20lb Package Now</button>
-        </div>
+            <button class="buy-button" data-price="299" data-weight="20">Add to Cart</button> </div>
 
         <h2>Overnight Shipping Details</h2>
         <div class="shipping-note">
@@ -87,11 +52,11 @@
             <p>All orders must be placed and confirmed **before 11:00 AM EST** for guaranteed overnight shipping.</p>
             <p>We will contact you to confirm your desired delivery date.</p>
         </div>
+    </main>
 
-        <footer>
-            <p><small>&copy; 2025 Your Business Name. All Rights Reserved.</small></p>
-        </footer>
-    </div>
+    <footer>
+        <p><small>&copy; 2025 J&Z Trade Inc. All Rights Reserved.</small></p>
+    </footer>
     
     <script src="script.js"></script> 
 </body>

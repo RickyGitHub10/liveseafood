@@ -1,38 +1,56 @@
-// 1. Array to hold product data (makes it easy to update prices later)
-const products = [
-    { weight: 10, price: 169.00 },
-    { weight: 20, price: 299.00 }
-];
+// script.js
 
-// 2. Function to handle what happens when a buy button is clicked
+// 1. STATE: Variable to hold the number of items in the cart
+let cartItemCount = 0;
+
+// 2. DOM REFERENCES: Get the elements we need to interact with
+const cartCountElement = document.getElementById('cart-count');
+const buyButtons = document.querySelectorAll('.buy-button');
+
+// 3. FUNCTION: Create a function to update the cart icon's display
+function updateCartIcon() {
+    // Update the text content of the span
+    cartCountElement.textContent = cartItemCount;
+
+    // Optional: Add a class to hide the '0' if you want
+    if (cartItemCount === 0) {
+        cartCountElement.style.display = 'none';
+    } else {
+        cartCountElement.style.display = 'block';
+    }
+}
+
+// 4. FUNCTION: This is the modified click handler
 function handleBuyClick(event) {
-    // Get the button element that was clicked
+    // Get the product data from the button
     const button = event.target;
-    
-    // Get the data stored in the button's data attributes
     const price = button.getAttribute('data-price');
     const weight = button.getAttribute('data-weight');
     
-    // Log the selection for testing (you'll replace this with your payment link)
-    console.log(`User selected the ${weight}lb package at $${price}.00`);
+    console.log(`Adding ${weight}lb package to cart at $${price}.00`);
     
-    // *** NEXT STEP: Integrate Payment / Redirect ***
-    // For now, let's just alert the user (you can remove this later)
-    alert(`Preparing your ${weight}lb Live Lobster order! Total: $${price}.00.`);
+    // 1. Increment the cart count
+    cartItemCount++;
     
-    // In a real e-commerce scenario, you would redirect to PayPal or a form here.
-    // Example: window.location.href = 'https://paypal.com/buy?item=10lb&amount=169';
+    // 2. Update the cart icon
+    updateCartIcon();
+    
+    // We can change this alert to be a simple confirmation
+    alert(`Added ${weight}lb Live Lobster to your cart!`);
+
+    // We removed the PayPal redirect. We'll add that to a "Checkout" button later.
 }
 
-// 3. Find all "Buy" buttons and attach the click function to them
+// 5. INITIALIZATION: Set up the page when it loads
 document.addEventListener('DOMContentLoaded', () => {
-    // Select all elements with the class 'buy-button'
-    const buyButtons = document.querySelectorAll('.buy-button');
-
-    // Loop through each button and add an event listener
+    
+    // Attach the event listener to all "Buy" buttons
     buyButtons.forEach(button => {
         button.addEventListener('click', handleBuyClick);
     });
     
-    console.log("Script loaded and event listeners are active.");
+    // Run the update function on load to set the initial state (e.g., hide '0')
+    updateCartIcon();
+    
+    console.log("J&Z Trade Inc. site initialized. Cart is ready.");
 });
