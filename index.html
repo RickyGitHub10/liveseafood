@@ -22,7 +22,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         h1 {
-            color: #cc0000; /* Lobster red! */
+            color: #cc0000;
             margin-bottom: 5px;
         }
         h2 {
@@ -45,7 +45,7 @@
         .price {
             font-size: 1.5em;
             font-weight: bold;
-            color: #0070ba; /* A strong color for the price */
+            color: #0070ba;
             margin: 10px 0;
         }
         .shipping-note {
@@ -61,40 +61,38 @@
         <h1>🦞 Ultra-Fresh Live Lobster</h1>
         <p>— Guaranteed Live, Delivered Overnight to Your Door! —</p>
 
-        <img src="liveseafood/lobsterpics/lobster.jpg" alt="High-Quality Live Lobster" class="product-image">
+        <img src="/lobster.png" alt="High-Quality Live Lobster" class="product-image">
 
         <h2>Choose Your Package</h2>
 
         <div class="package">
             <h3>10 lb Live Lobster Package</h3>
-            <p>Perfect for a family dinner or small gathering. Guaranteed premium quality catch.</p>
-            <div class="price">$169.00</div>
+            <p>Perfect for a family dinner or small gathering.</p>
+            <div class="price" id="price-10lb">$169.00</div>
             
-            <form action="[PAYPAL_FORM_ACTION_URL]" method="post">
-                <input type="submit" value="Buy 10lb Package Now" style="background-color: #0070ba; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">
-            </form>
-            </div>
+            <button class="buy-button" data-price="169" data-weight="10">Buy 10lb Package Now</button>
+        </div>
 
         <div class="package">
             <h3>20 lb Live Lobster Package</h3>
             <p>Our best value package for large parties, events, or stocking up.</p>
-            <div class="price">$299.00</div>
+            <div class="price" id="price-20lb">$299.00</div>
             
-            <form action="[PAYPAL_FORM_ACTION_URL]" method="post">
-                <input type="submit" value="Buy 20lb Package Now" style="background-color: #0070ba; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer;">
-            </form>
-            </div>
+            <button class="buy-button" data-price="299" data-weight="20">Buy 20lb Package Now</button>
+        </div>
 
         <h2>Overnight Shipping Details</h2>
         <div class="shipping-note">
             <p><strong>🚨 Next-Day Delivery Cutoff:</strong></p>
             <p>All orders must be placed and confirmed **before 11:00 AM EST** for guaranteed overnight shipping.</p>
-            <p>Please ensure your address is correct during checkout. We will contact you to confirm your desired delivery date.</p>
+            <p>We will contact you to confirm your desired delivery date.</p>
         </div>
 
         <footer>
-            <p><small>&copy; [Current Year] Your Business Name. All Rights Reserved.</small></p>
+            <p><small>&copy; 2025 Your Business Name. All Rights Reserved.</small></p>
         </footer>
     </div>
+    
+    <script src="script.js"></script> 
 </body>
 </html>
