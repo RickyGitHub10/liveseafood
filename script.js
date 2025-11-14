@@ -3,7 +3,6 @@
 // ==================
 // 1. STATE & CONSTANTS
 // ==================
-// CHANGED (Line 6): Load cart from localStorage or start with an empty array
 let cartItems = JSON.parse(localStorage.getItem('jAndZCart')) || [];
 const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // Your email is set
 
@@ -21,6 +20,7 @@ const cartItemsListElement = document.getElementById('cart-items-list');
 const contactLink = document.getElementById('contact-link');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const mainNav = document.getElementById('main-nav');
+const accordionHeaders = document.querySelectorAll('.accordion-header'); // ADDED (Line 28)
 
 // ==================
 // 3. FUNCTIONS
@@ -36,8 +36,6 @@ function updateCartIcon() {
         totalItems += item.quantity; // Sum the quantities of all items
     });
     
-    // This check is important because cartCountElement won't exist
-    // if the script is running on a page without the cart icon
     if (cartCountElement) {
         cartCountElement.textContent = totalItems;
 
@@ -58,25 +56,20 @@ function handleBuyClick(event) {
     const itemName = button.getAttribute('data-name');
     const itemPrice = parseFloat(button.getAttribute('data-price')); 
 
-    // Check if item is already in the cart
     const existingItem = cartItems.find(item => item.name === itemName);
 
     if (existingItem) {
-        existingItem.quantity++; // Increment quantity
+        existingItem.quantity++;
     } else {
-        // Add new item to cart
         cartItems.push({ name: itemName, price: itemPrice, quantity: 1 });
     }
     
     console.log("Cart updated:", cartItems);
     
-    // NEW (Line 81): Save the updated cart to localStorage
     localStorage.setItem('jAndZCart', JSON.stringify(cartItems));
     
-    // Update the visual icon
     updateCartIcon();
     
-    // Give user feedback
     alert(`${itemName} added to cart!`);
 }
 
@@ -84,9 +77,8 @@ function handleBuyClick(event) {
  * Shows the modal.
  */
 function showModal() {
-    // Check if the modal exists on the page before trying to show it
     if (cartModal) {
-        updateCartItemsList(); // Update the list right before showing
+        updateCartItemsList(); 
         cartModal.style.display = 'block';
     }
 }
@@ -104,7 +96,6 @@ function hideModal() {
  * Updates the text inside the modal's item list.
  */
 function updateCartItemsList() {
-    // Check if the list element exists
     if (!cartItemsListElement) return;
 
     if (cartItems.length === 0) {
@@ -112,10 +103,8 @@ function updateCartItemsList() {
         return;
     }
 
-    // Clear the list
     cartItemsListElement.innerHTML = "";
     
-    // Add each item as a new paragraph
     cartItems.forEach(item => {
         const itemElement = document.createElement('p');
         itemElement.textContent = `${item.quantity} x ${item.name} - $${(item.price * item.quantity).toFixed(2)}`;
@@ -137,10 +126,8 @@ function handleCheckout() {
         return;
     }
     
-    // Base URL for PayPal cart upload
     let paypalURL = `https://www.paypal.com/cgi-bin/webscr?cmd=_cart&upload=1&business=${PAYPAL_BUSINESS_EMAIL}`;
 
-    // Add each item in the cart to the URL
     cartItems.forEach((item, index) => {
         let itemNumber = index + 1;
         paypalURL += `&item_name_${itemNumber}=${encodeURIComponent(item.name)}`;
@@ -150,7 +137,6 @@ function handleCheckout() {
 
     console.log("Redirecting to PayPal:", paypalURL);
     
-    // Send the user to PayPal
     window.location.href = paypalURL;
 }
 
@@ -160,7 +146,7 @@ function handleCheckout() {
  * Copies the email address to the clipboard and provides user feedback.
  */
 function handleContactClick(event) {
-    event.preventDefault(); // Stop the '#' link from jumping
+    event.preventDefault(); 
     
     const email = 'ricky.chenwok@gmail.com';
     
@@ -183,13 +169,10 @@ function handleContactClick(event) {
 // ==================
 document.addEventListener('DOMContentLoaded', () => {
     
-    // Attach click event to all "Add to Cart" buttons
-    // This will find 0 buttons on about.html and not run, which is fine.
     buyButtons.forEach(button => {
         button.addEventListener('click', handleBuyClick);
     });
 
-    // These listeners will work on both pages
     if (cartIconButton) {
         cartIconButton.addEventListener('click', showModal);
     }
@@ -206,15 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
         contactLink.addEventListener('click', handleContactClick);
     }
     
-    // NEW Hamburger menu listener
     if (hamburgerBtn && mainNav) {
         hamburgerBtn.addEventListener('click', () => {
             mainNav.classList.toggle('is-open');
         });
     }
 
-    // Update cart on initial load
-    // This now reads from the localStorage cart!
+    // NEW ACCORDION LISTENER (Lines 207-217)
+    if(accordionHeaders) {
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                
+                // Toggle the classes
+                header.classList.toggle('is-open');
+                content.classList.toggle('is-open');
+            });
+        });
+    }
+
     updateCartIcon();
     
     console.log("J&Z Trade Inc. site initialized.");
