@@ -148,7 +148,7 @@ function handleCheckout() {
 function handleContactClick(event) {
     event.preventDefault(); 
     
-    const email = 'ricky.chenwok@gmail.com';
+    const email = 'jztrade2024@gmail.com';
     
     navigator.clipboard.writeText(email).then(() => {
         const originalText = contactLink.textContent;
@@ -159,7 +159,7 @@ function handleContactClick(event) {
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy email: ', err);
-        alert('Failed to copy. Email is: ricky.chenwok@gmail.com');
+        alert('Failed to copy. Email is jztrade@gmail.com');
     });
 }
 
