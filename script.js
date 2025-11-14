@@ -4,7 +4,7 @@
 // 1. STATE & CONSTANTS
 // ==================
 let cartItems = []; // Array to store { name, price, quantity } objects
-const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // <-- I've updated this for you.
+const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // Your email is set
 
 // ==================
 // 2. DOM REFERENCES
@@ -17,7 +17,9 @@ const closeModalButton = document.getElementById('close-modal-button');
 const continueShoppingButton = document.getElementById('continue-shopping-button');
 const checkoutButton = document.getElementById('checkout-button');
 const cartItemsListElement = document.getElementById('cart-items-list');
-const contactLink = document.getElementById('contact-link'); // <-- ADDED
+const contactLink = document.getElementById('contact-link');
+const hamburgerBtn = document.getElementById('hamburger-btn'); // ADDED (Line 20)
+const mainNav = document.getElementById('main-nav'); // ADDED (Line 21)
 
 // ==================
 // 3. FUNCTIONS
@@ -49,7 +51,7 @@ function updateCartIcon() {
 function handleBuyClick(event) {
     const button = event.target;
     const itemName = button.getAttribute('data-name');
-    const itemPrice = parseFloat(button.getAttribute('data-price'));
+    const itemPrice = parseFloat(button.getAttribute('data-price')); 
 
     // Check if item is already in the cart
     const existingItem = cartItems.find(item => item.name === itemName);
@@ -74,15 +76,20 @@ function handleBuyClick(event) {
  * Shows the modal.
  */
 function showModal() {
-    updateCartItemsList(); // Update the list right before showing
-    cartModal.style.display = 'block';
+    // Check if the modal exists on the page before trying to show it
+    if (cartModal) {
+        updateCartItemsList(); // Update the list right before showing
+        cartModal.style.display = 'block';
+    }
 }
 
 /**
  * Hides the modal.
  */
 function hideModal() {
-    cartModal.style.display = 'none';
+    if (cartModal) {
+        cartModal.style.display = 'none';
+    }
 }
 
 /**
@@ -138,7 +145,7 @@ function handleCheckout() {
 
 
 /**
- * NEW FUNCTION: Handles the contact link click.
+ * Handles the contact link click.
  * Copies the email address to the clipboard and provides user feedback.
  */
 function handleContactClick(event) {
@@ -146,20 +153,15 @@ function handleContactClick(event) {
     
     const email = 'ricky.chenwok@gmail.com';
     
-    // Use the modern, secure Clipboard API
     navigator.clipboard.writeText(email).then(() => {
-        // Success!
         const originalText = contactLink.textContent;
         contactLink.textContent = 'Email Copied!';
         
-        // Revert back after 2 seconds
         setTimeout(() => {
             contactLink.textContent = originalText;
         }, 2000);
     }).catch(err => {
-        // Error (e.g., in a very old browser or if permissions are denied)
         console.error('Failed to copy email: ', err);
-        // Fallback for old browsers
         alert('Failed to copy. Email is: ricky.chenwok@gmail.com');
     });
 }
@@ -171,22 +173,36 @@ function handleContactClick(event) {
 document.addEventListener('DOMContentLoaded', () => {
     
     // Attach click event to all "Add to Cart" buttons
+    // This will find 0 buttons on about.html and not run, which is fine.
     buyButtons.forEach(button => {
         button.addEventListener('click', handleBuyClick);
     });
 
-    // Modal open/close events
-    cartIconButton.addEventListener('click', showModal);
-    closeModalButton.addEventListener('click', hideModal);
-    continueShoppingButton.addEventListener('click', hideModal);
+    // These listeners will work on both pages
+    if (cartIconButton) {
+        cartIconButton.addEventListener('click', showModal);
+    }
+    if (closeModalButton) {
+        closeModalButton.addEventListener('click', hideModal);
+    }
+    if (continueShoppingButton) {
+        continueShoppingButton.addEventListener('click', hideModal);
+    }
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', handleCheckout);
+    }
+    if (contactLink) {
+        contactLink.addEventListener('click', handleContactClick);
+    }
     
-    // Checkout event
-    checkoutButton.addEventListener('click', handleCheckout);
+    // NEW Hamburger menu listener (Lines 202-204)
+    if (hamburgerBtn && mainNav) {
+        hamburgerBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('is-open');
+        });
+    }
 
-    // ADDED: Contact link click event
-    contactLink.addEventListener('click', handleContactClick);
-
-    // Update cart on initial load (to hide '0')
+    // Update cart on initial load
     updateCartIcon();
     
     console.log("J&Z Trade Inc. site initialized.");

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - J&Z Trade Inc.</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">J&Z Trade Inc.</a>
+        </div>
+        
+        <button id="hamburger-btn" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav id="main-nav"> <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="#" id="contact-link" title="Click to copy email address">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" id="cart-icon-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content-card">
+            <h1>Our Story</h1>
+            <p class="story-text">
+                J&Z Trade Inc. isn't a massive, faceless corporation. We're a family business, born from a simple idea: sharing the incredible taste of *real* Maine lobster with people who deserve the best.
+            </p>
+            <p class="story-text">
+                This all started with our founder our dad. For years, he talked about how the lobster most people get is nothing like the fresh, feisty, succulent lobster pulled straight from the cold, clear waters of the North Atlantic. He wanted to change that.
+            </p>
+            <p class="story-text">
+                We built this business on a family promise: if we wouldn't be proud to serve it at our own dinner table, we won't sell it.
+            </p>
+            <p class="story-text">
+                Today, we work directly with seasoned lobstermen in Maine to source the highest-quality, wild-caught lobster. We handle every order with care, packing it cold and shipping it overnight, to bring that authentic, "fresh off the boat" experience right to your front door.
+            </p>
+            <p class="story-text">
+                From our family to yours, thank you for trusting us with your special occasion.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <p><small>&copy; 2025 J&Z Trade Inc. All Rights Reserved.</small></p>
+    </footer>
+
+    <div id="cart-modal" class="modal-hidden">
+        <div class="modal-content">
+            <span class="close-button" id="close-modal-button">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            <p>Review your items and proceed to checkout.</p>
+            
+            <div id="cart-items-list">
+                Your cart is currently empty.
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="continue-shopping-button">Continue Shopping</button>
+                <button id="checkout-button">Checkout</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script> 
+</body>
+</html>

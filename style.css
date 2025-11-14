@@ -31,6 +31,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    flex-wrap: wrap;
 }
 
 .logo a {
@@ -38,6 +39,25 @@ header {
     font-weight: bold;
     color: var(--secondary-color);
     text-decoration: none;
+    flex-shrink: 0; /* Prevents logo from shrinking */
+}
+
+/* --- HAMBURGER STYLES START --- */
+
+#hamburger-btn {
+    display: none; /* Hidden by default (on desktop) */
+    font-size: 1.8em;
+    color: var(--text-dark);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+/* Desktop Navigation (horizontal) */
+nav {
+    display: flex;
 }
 
 nav ul {
@@ -51,13 +71,76 @@ nav li {
     margin-left: 25px;
 }
 
+/* --- MOBILE STYLES --- */
+@media (max-width: 767px) {
+    /* Show the hamburger button */
+    #hamburger-btn {
+        display: block; 
+        order: 2; /* Puts it between logo and cart */
+    }
+
+    .cart-icon {
+        order: 3; /* Puts cart at the far right */
+    }
+
+    /* Hide the navigation by default on mobile */
+    nav {
+        display: none; 
+        width: 100%; /* Make it full width when open */
+        order: 4; /* Puts it on its own line below */
+        margin-top: 15px;
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack links vertically */
+        width: 100%;
+    }
+
+    /* This class is toggled by JavaScript */
+    nav.is-open {
+        display: block; 
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        padding: 5px 0;
+        overflow: hidden;
+    }
+    
+    nav li {
+        margin: 0;
+        width: 100%;
+        border-top: 1px solid #f0f0f0; /* CHANGED (Line 116) */
+    }
+    
+    nav li:first-child {
+        border-top: none; /* ADDED (Line 119) */
+    }
+
+    nav a {
+        padding: 15px;
+        min-width: auto; /* Override desktop min-width */
+        text-align: center !important; /* ADDED !important (Line 125) */
+        display: block; 
+        border-bottom: none !important; /* ADDED !important (Line 127) */
+    }
+
+    nav a.active, nav a:hover {
+        border-bottom: none !important; /* ADDED !important (Line 131) */
+        background-color: #f8f8f8;
+        /* The desktop blue underline is now gone */
+        color: var(--primary-color);
+    }
+}
+/* --- END HAMBURGER STYLES --- */
+
+
 nav a {
     text-decoration: none;
     color: var(--text-light);
     font-weight: bold;
     font-size: 1.1em;
     padding-bottom: 5px;
-    min-width: 80px; /* Stabilizes width */
+    min-width: 80px; 
     text-align: center;
     display: inline-block;
     transition: color 0.3s;
@@ -78,6 +161,7 @@ nav a#contact-link:hover {
     color: var(--text-dark);
     position: relative;
     cursor: pointer;
+    flex-shrink: 0; /* Prevents cart from shrinking */
 }
 
 #cart-count {
@@ -118,7 +202,6 @@ h1 {
     margin-top: 0;
 }
 
-/* NEW SALE TITLE */
 .sale-title {
     text-align: center;
     font-size: 2.2em;
@@ -145,7 +228,7 @@ h2 {
 }
 
 /* ================== */
-/* TRUST FEATURES (Updated Icon) */
+/* TRUST FEATURES */
 /* ================== */
 .trust-features {
     display: flex;
@@ -195,10 +278,14 @@ h2 {
     .product-grid {
         grid-template-columns: 1fr 1fr;
     }
+    /* height 100% only for desktop grid */
+    .product-grid .package {
+        height: 100%; 
+    }
 }
 
 /* ================== */
-/* PACKAGE "CARD" (Updated) */
+/* PACKAGE "CARD" */
 /* ================== */
 .package {
     border: none;
@@ -208,13 +295,12 @@ h2 {
     padding: 30px;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    /* height: 100%; <-- This was the mobile "connected box" problem */
     text-align: center;
-    position: relative; /* For the sale badge */
-    overflow: hidden; /* Keeps badge clean */
+    position: relative;
+    overflow: hidden;
 }
 
-/* NEW SALE BADGE */
 .sale-badge {
     position: absolute;
     top: 15px;
@@ -258,9 +344,8 @@ h2 {
     padding-left: 10px;
 }
 
-/* NEW PRICE BOX STYLES */
 .price-box {
-    margin-top: auto; /* Pushes price to the bottom */
+    margin-top: auto;
     padding-top: 20px;
 }
 
@@ -275,10 +360,10 @@ h2 {
 .package .price {
     font-size: 2.2em;
     font-weight: 700;
-    color: var(--secondary-color); /* Sale price is red */
-    margin-top: 0; /* Override old margin */
-    padding-top: 0; /* Override old padding */
-    display: inline; /* Allows it to sit next to old price */
+    color: var(--secondary-color);
+    margin-top: 0;
+    padding-top: 0;
+    display: inline;
 }
 
 .package .buy-button {
@@ -289,7 +374,7 @@ h2 {
     margin-top: 15px;
     background-color: var(--primary-color);
     transition: transform 0.2s, box-shadow 0.2s;
-    z-index: 5; /* Sits below badge */
+    z-index: 5;
     position: relative;
 }
 
@@ -300,7 +385,7 @@ h2 {
 }
 
 /* ================== */
-/* NEW SHIPPING DETAILS (Replaces .shipping-note) */
+/* SHIPPING DETAILS */
 /* ================== */
 .shipping-details {
     text-align: left;
@@ -340,7 +425,6 @@ h2 {
 }
 
 .shipping-details li::before {
-    /* Better checkmark icon */
     font-family: "Font Awesome 6 Free";
     content: '\f00c'; /* fa-check */
     font-weight: 900;
@@ -349,6 +433,30 @@ h2 {
     left: 0;
     top: 2px;
     font-size: 1.2em;
+}
+
+/* ================== */
+/* "ABOUT US" STYLES */
+/* ================== */
+.content-card {
+    background: #fff;
+    padding: 40px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    text-align: left;
+}
+
+.content-card h1 {
+    text-align: left;
+    margin-top: 0;
+}
+
+.story-text {
+    font-size: 1.2em;
+    line-height: 1.7;
+    color: var(--text-light);
+    margin-bottom: 20px;
 }
 
 /* ================== */
