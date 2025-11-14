@@ -4,7 +4,7 @@
 // 1. STATE & CONSTANTS
 // ==================
 let cartItems = JSON.parse(localStorage.getItem('jAndZCart')) || [];
-const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // Your email is set
+const PAYPAL_BUSINESS_EMAIL = "jztrade2024@gmail.com"; // CHANGED (Line 7)
 
 // ==================
 // 2. DOM REFERENCES
@@ -20,7 +20,7 @@ const cartItemsListElement = document.getElementById('cart-items-list');
 const contactLink = document.getElementById('contact-link');
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const mainNav = document.getElementById('main-nav');
-const accordionHeaders = document.querySelectorAll('.accordion-header'); // ADDED (Line 28)
+const accordionHeaders = document.querySelectorAll('.accordion-header');
 
 // ==================
 // 3. FUNCTIONS
@@ -148,7 +148,7 @@ function handleCheckout() {
 function handleContactClick(event) {
     event.preventDefault(); 
     
-    const email = 'jztrade2024@gmail.com';
+    const email = 'jztrade2024@gmail.com'; // CHANGED (Line 176)
     
     navigator.clipboard.writeText(email).then(() => {
         const originalText = contactLink.textContent;
@@ -159,7 +159,7 @@ function handleContactClick(event) {
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy email: ', err);
-        alert('Failed to copy. Email is jztrade@gmail.com');
+        alert('Failed to copy. Email is: jztrade2024@gmail.com'); // CHANGED (Line 187)
     });
 }
 
@@ -195,13 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // NEW ACCORDION LISTENER (Lines 207-217)
     if(accordionHeaders) {
         accordionHeaders.forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
                 
-                // Toggle the classes
                 header.classList.toggle('is-open');
                 content.classList.toggle('is-open');
             });
@@ -210,5 +208,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateCartIcon();
     
-    console.log("J&Z Trade Inc. site initialized.");
+    console.log("LobsterBrother site initialized."); // CHANGED (Line 219)
 });
