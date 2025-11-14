@@ -4,8 +4,8 @@
 /* GLOBAL STYLES */
 /* ================== */
 :root {
-    --primary-color: #0070ba; /* REVERTED (Line 10): Blue */
-    --secondary-color: #cc0000; /* REVERTED (Line 11): Red */
+    --primary-color: #0070ba; /* Blue */
+    --secondary-color: #cc0000; /* Red */
     --text-dark: #333;
     --text-light: #555;
 }
@@ -19,7 +19,7 @@ body {
 }
 
 .announcement-bar {
-    background-color: var(--secondary-color); /* REVERTED (Line 23) */
+    background-color: var(--secondary-color);
     color: white;
     font-weight: 600;
     text-align: center;
@@ -47,7 +47,7 @@ header {
 .logo a {
     font-size: 1.8em;
     font-weight: bold;
-    color: var(--secondary-color); /* REVERTED (Line 49) */
+    color: var(--secondary-color);
     text-decoration: none;
     flex-shrink: 0; 
 }
@@ -134,7 +134,7 @@ nav li {
     nav a.active, nav a:hover {
         border-bottom: none !important; 
         background-color: #f8f8f8;
-        color: var(--primary-color); /* REVERTED (Line 134) */
+        color: var(--primary-color);
     }
 }
 /* --- END HAMBURGER STYLES --- */
@@ -153,13 +153,13 @@ nav a {
 }
 
 nav a.active, nav a:hover {
-    color: var(--primary-color); /* REVERTED (Line 156) */
-    border-bottom: 2px solid var(--primary-color); /* REVERTED */
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
 }
 
 nav a#contact-link:hover {
     border-bottom: none;
-    color: var(--primary-color); /* REVERTED (Line 162) */
+    color: var(--primary-color);
 }
 
 .cart-icon {
@@ -174,7 +174,7 @@ nav a#contact-link:hover {
     position: absolute;
     top: -8px;
     right: -12px;
-    background-color: var(--secondary-color); /* REVERTED (Line 172) */
+    background-color: var(--secondary-color);
     color: white;
     font-size: 0.6em;
     font-weight: bold;
@@ -247,7 +247,7 @@ h2 {
 
 .feature i {
     font-size: 2.5em;
-    color: var(--primary-color); /* REVERTED (Line 240) */
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 
@@ -301,7 +301,7 @@ h2 {
     position: absolute;
     top: 15px;
     right: -40px;
-    background-color: var(--secondary-color); /* REVERTED (Line 318) */
+    background-color: var(--secondary-color);
     color: white;
     padding: 5px 10px;
     font-weight: 700;
@@ -356,7 +356,7 @@ h2 {
 .package .price {
     font-size: 2.2em;
     font-weight: 700;
-    color: var(--secondary-color); /* REVERTED (Line 351) */
+    color: var(--secondary-color);
     margin-top: 0;
     padding-top: 0;
     display: inline;
@@ -368,7 +368,7 @@ h2 {
     font-weight: 600;
     padding: 15px 0;
     margin-top: 15px;
-    background-color: var(--primary-color); /* REVERTED (Line 358) */
+    background-color: var(--primary-color);
     color: white; 
     transition: transform 0.2s, box-shadow 0.2s;
     z-index: 5;
@@ -378,9 +378,9 @@ h2 {
 }
 
 .package .buy-button:hover {
-    background-color: #00568c; /* REVERTED */
+    background-color: #00568c; 
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 112, 186, 0.3); /* REVERTED */
+    box-shadow: 0 4px 10px rgba(0, 112, 186, 0.3); 
 }
 
 /* ================== */
@@ -427,7 +427,7 @@ h2 {
     font-family: "Font Awesome 6 Free";
     content: '\f00c'; /* fa-check */
     font-weight: 900;
-    color: var(--primary-color); /* REVERTED (Line 381) */
+    color: var(--primary-color); 
     position: absolute;
     left: 0;
     top: 2px;
@@ -481,7 +481,7 @@ h2 {
     padding: 20px 30px;
     font-size: 1.3em;
     font-weight: 700; 
-    color: var(--primary-color); /* REVERTED (Line 445) */
+    color: var(--primary-color); 
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -489,7 +489,7 @@ h2 {
 }
 .accordion-header i {
     transition: transform 0.3s ease;
-    color: var(--primary-color); /* REVERTED (Line 453) */
+    color: var(--primary-color); 
 }
 .accordion-header.is-open i {
     transform: rotate(180deg);
@@ -511,8 +511,7 @@ h2 {
     padding-top: 0;
 }
 
-
-/* NEW REVIEWS SECTION (Lines 485-524) */
+/* REVIEWS SECTION */
 .reviews {
     margin-top: 40px;
 }
@@ -525,7 +524,6 @@ h2 {
     gap: 20px;
     margin-top: 20px;
 }
-/* On desktop, show 3 columns */
 @media (min-width: 768px) {
     .review-grid {
         grid-template-columns: 1fr 1fr 1fr;
@@ -552,6 +550,58 @@ h2 {
     font-weight: 700;
     color: var(--text-dark);
     margin-top: 15px;
+}
+
+/* REVIEW FORM STYLES */
+.review-form-section {
+    background: #fff;
+    padding: 30px;
+    margin-top: 40px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+.review-form-section h2 {
+    text-align: left;
+    margin-top: 0;
+}
+.review-form-section p {
+    font-size: 1.1em;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+.form-group input,
+.form-group textarea,
+.form-group select { /* ADDED (Line 549) */
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+.submit-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.submit-button:hover {
+    background-color: #00568c;
 }
 
 /* ================== */
@@ -695,6 +745,6 @@ footer {
 }
 
 #checkout-button {
-    background-color: var(--primary-color); /* REVERTED (Line 563) */
+    background-color: var(--primary-color); 
     color: white;
 }
