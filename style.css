@@ -434,6 +434,32 @@ h2 {
     font-size: 1.2em;
 }
 
+/* NEW SHIPPING DISCLAIMER BOX (Lines 405-424) */
+.shipping-disclaimer {
+    background-color: #fff8e1; /* Light yellow */
+    border: 1px solid #ffecb3; /* Lighter yellow */
+    border-left: 5px solid #ffc107; /* Amber */
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: 25px;
+}
+
+.shipping-disclaimer h4 {
+    margin: 0 0 10px 0;
+    color: #c66900;
+}
+
+.shipping-disclaimer h4 i {
+    margin-right: 8px;
+}
+
+.shipping-disclaimer p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #5f4300;
+    margin: 5px 0 0 0;
+}
+
 /* ================== */
 /* "ABOUT US" STYLES */
 /* ================== */
@@ -517,7 +543,6 @@ footer {
     min-height: 50px;
 }
 
-/* NEW MODAL NOTES (Lines 520-539) */
 .modal-notes-section {
     margin-top: 15px;
 }
@@ -538,6 +563,19 @@ footer {
     color: #444;
     background-color: #f8f8f8;
     border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* NEW CART DISCLAIMER NOTE (Line 546) */
+.modal-address-note {
+    text-align: left;
+    font-size: 0.9em;
+    color: #c66900; /* Amber text */
+    background-color: #fff8e1; /* Light yellow */
+    border: 1px solid #ffecb3;
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
