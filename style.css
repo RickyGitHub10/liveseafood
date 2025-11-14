@@ -11,11 +11,10 @@
 }
 
 body {
-    /* Modern, clean font stack */
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa; /* Lighter gray background */
+    background-color: #f8f9fa;
     color: var(--text-dark);
 }
 
@@ -37,7 +36,7 @@ header {
 .logo a {
     font-size: 1.8em;
     font-weight: bold;
-    color: var(--secondary-color); /* Lobster red */
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
@@ -58,6 +57,10 @@ nav a {
     font-weight: bold;
     font-size: 1.1em;
     padding-bottom: 5px;
+    min-width: 80px; /* Stabilizes width */
+    text-align: center;
+    display: inline-block;
+    transition: color 0.3s;
 }
 
 nav a.active, nav a:hover {
@@ -65,10 +68,15 @@ nav a.active, nav a:hover {
     border-bottom: 2px solid var(--primary-color);
 }
 
+nav a#contact-link:hover {
+    border-bottom: none;
+    color: var(--primary-color);
+}
+
 .cart-icon {
     font-size: 1.5em;
     color: var(--text-dark);
-    position: relative; /* Needed for positioning the count */
+    position: relative;
     cursor: pointer;
 }
 
@@ -88,11 +96,11 @@ nav a.active, nav a:hover {
 /* MAIN CONTENT */
 /* ================== */
 main.container {
-    max-width: 1000px; /* Wider for a more modern feel */
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
-    background: none; /* Removed white background */
-    box-shadow: none; /* Removed shadow, cards will have it */
+    background: none;
+    box-shadow: none;
 }
 
 h1 {
@@ -110,13 +118,22 @@ h1 {
     margin-top: 0;
 }
 
+/* NEW SALE TITLE */
+.sale-title {
+    text-align: center;
+    font-size: 2.2em;
+    color: var(--secondary-color);
+    font-weight: 700;
+    margin: 10px 0 20px 0;
+}
+
 h2 {
     text-align: center;
     font-size: 2em;
     color: var(--text-dark);
     margin-top: 40px;
     margin-bottom: 20px;
-    border: none; /* Removed old border */
+    border: none;
 }
 
 .product-image {
@@ -128,12 +145,12 @@ h2 {
 }
 
 /* ================== */
-/* TRUST FEATURES */
+/* TRUST FEATURES (Updated Icon) */
 /* ================== */
 .trust-features {
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap; /* Allows wrapping on small screens */
+    flex-wrap: wrap;
     margin: 40px 0;
     padding: 20px;
     background: #fff;
@@ -142,7 +159,7 @@ h2 {
 
 .feature {
     flex-basis: 30%;
-    min-width: 200px; /* For wrap */
+    min-width: 200px;
     text-align: center;
     padding: 10px;
 }
@@ -169,12 +186,11 @@ h2 {
 /* ================== */
 .product-grid {
     display: grid;
-    grid-template-columns: 1fr; /* 1 column by default */
+    grid-template-columns: 1fr;
     gap: 30px;
     margin-top: 20px;
 }
 
-/* 2-column grid for screens 768px and wider */
 @media (min-width: 768px) {
     .product-grid {
         grid-template-columns: 1fr 1fr;
@@ -182,7 +198,7 @@ h2 {
 }
 
 /* ================== */
-/* PACKAGE "CARD" */
+/* PACKAGE "CARD" (Updated) */
 /* ================== */
 .package {
     border: none;
@@ -190,10 +206,29 @@ h2 {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     background: #fff;
     padding: 30px;
-    display: flex; /* Makes footer items easy */
+    display: flex;
     flex-direction: column;
-    height: 100%; /* Makes cards in a row same height */
+    height: 100%;
     text-align: center;
+    position: relative; /* For the sale badge */
+    overflow: hidden; /* Keeps badge clean */
+}
+
+/* NEW SALE BADGE */
+.sale-badge {
+    position: absolute;
+    top: 15px;
+    right: -40px;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 5px 10px;
+    font-weight: 700;
+    font-size: 0.9em;
+    transform: rotate(45deg);
+    width: 150px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
 }
 
 .package h3 {
@@ -219,16 +254,31 @@ h2 {
 
 .features-list li {
     margin-bottom: 8px;
-    list-style-type: '🦞'; /* Fun! */
+    list-style-type: '🦞';
     padding-left: 10px;
+}
+
+/* NEW PRICE BOX STYLES */
+.price-box {
+    margin-top: auto; /* Pushes price to the bottom */
+    padding-top: 20px;
+}
+
+.old-price {
+    font-size: 1.5em;
+    font-weight: 400;
+    color: var(--text-light);
+    text-decoration: line-through;
+    margin-right: 10px;
 }
 
 .package .price {
     font-size: 2.2em;
     font-weight: 700;
-    color: var(--secondary-color);
-    margin-top: auto; /* Pushes price to the bottom */
-    padding-top: 20px;
+    color: var(--secondary-color); /* Sale price is red */
+    margin-top: 0; /* Override old margin */
+    padding-top: 0; /* Override old padding */
+    display: inline; /* Allows it to sit next to old price */
 }
 
 .package .buy-button {
@@ -239,6 +289,8 @@ h2 {
     margin-top: 15px;
     background-color: var(--primary-color);
     transition: transform 0.2s, box-shadow 0.2s;
+    z-index: 5; /* Sits below badge */
+    position: relative;
 }
 
 .package .buy-button:hover {
@@ -248,18 +300,60 @@ h2 {
 }
 
 /* ================== */
-/* OTHER STYLES */
+/* NEW SHIPPING DETAILS (Replaces .shipping-note) */
 /* ================== */
-.shipping-note {
-    text-align: center;
-    background-color: #eef8ff;
-    padding: 15px;
-    border: 1px dashed var(--primary-color);
+.shipping-details {
+    text-align: left;
+    background: #fff;
+    padding: 30px;
     margin-top: 40px;
-    border-radius: 8px;
-    color: #444;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
+.shipping-details h2 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.shipping-details p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: var(--text-light);
+}
+
+.shipping-details ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.shipping-details li {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    padding-left: 35px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.shipping-details li::before {
+    /* Better checkmark icon */
+    font-family: "Font Awesome 6 Free";
+    content: '\f00c'; /* fa-check */
+    font-weight: 900;
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 1.2em;
+}
+
+/* ================== */
+/* FOOTER & MODAL */
+/* ================== */
 footer {
     text-align: center;
     padding: 20px;
@@ -267,11 +361,8 @@ footer {
     color: #999;
 }
 
-/* ================== */
-/* MODAL STYLES */
-/* ================== */
 .modal-hidden {
-    display: none; /* Hides the modal by default */
+    display: none;
     position: fixed;
     z-index: 2000;
     left: 0;
@@ -279,13 +370,12 @@ footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-/* This is the white pop-up box */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 25px;
     border: 1px solid #888;
     width: 80%;
@@ -340,6 +430,6 @@ footer {
 }
 
 #checkout-button {
-    background-color: var(--primary-color); /* PayPal blue */
+    background-color: var(--primary-color);
     color: white;
 }

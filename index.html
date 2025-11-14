@@ -16,7 +16,7 @@
         <nav>
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="mailto:ricky.chenwok@gmail.com">Contact</a></li>
+                <li><a href="#" id="contact-link" title="Click to copy email address">Contact</a></li>
             </ul>
         </nav>
         <div class="cart-icon" id="cart-icon-button">
@@ -28,14 +28,15 @@
     <main class="container">
         <h1>🦞 Ultra-Fresh Live Maine Lobster</h1>
         <p class="subtitle">— Guaranteed Live, Delivered Overnight to Your Door! —</p>
+        
+        <h2 class="sale-title">🔥 Early Black Friday Sale! 🔥</h2>
 
         <img src="lobsterpics/lobster.png" alt="High-Quality Live Maine Lobster" class="product-image">
 
         <section class="trust-features">
             <div class="feature">
-                <i class="fa-solid fa-shipping-fast"></i>
-                <h4>Overnight Shipping</h4>
-                <p>Order by 11 AM EST for guaranteed next-day delivery.</p>
+                <i class="fa-solid fa-truck-fast"></i> <h4>FREE Overnight Shipping</h4>
+                <p>All orders ship free. Order by 11 AM EST (Mon-Thurs) for next-day delivery.</p>
             </div>
             <div class="feature">
                 <i class="fa-solid fa-check-circle"></i>
@@ -44,8 +45,8 @@
             </div>
             <div class="feature">
                 <i class="fa-solid fa-snowflake"></i>
-                <h4>Packed Cold</h4>
-                <p>Guaranteed live and feisty on arrival, packed with care.</p>
+                <h4>Packed Cold & Live</h4>
+                <p>Guaranteed live and feisty on arrival, packed with extra care.</p>
             </div>
         </section>
 
@@ -53,37 +54,50 @@
 
         <section class="product-grid">
             <div class="package">
-                <h3>10 lb Live Maine Lobster</h3>
+                <span class="sale-badge">SAVE $100</span>
+                <h3>10 lb Package (~8 Lobsters)</h3>
                 <p class="package-description">
                     Ideal for a special family dinner or an intimate gathering. Experience the sweet, succulent taste of genuine Maine lobster.
                 </p>
                 <ul class="features-list">
-                    <li>Each lobster is ~1.25 lbs</li> <li>Serves approx. 4-6 people</li>
+                    <li>Approx. 8 lobsters (~1.25 lbs each)</li>
+                    <li>Serves approx. 4-6 people</li>
                     <li>Wild-caught & sustainably sourced</li>
-                    <li>The classic, impressive main course</li>
                 </ul>
-                <div class="price" id="price-10lb">$169.00</div>
-                <button class="buy-button" data-price="169" data-weight="10" data-name="10lb Live Maine Lobster Package">Add to Cart</button>
+                <div class="price-box">
+                    <span class="old-price">$299.00</span>
+                    <div class="price">$199.00</div>
+                </div>
+                <button class="buy-button" data-price="199" data-weight="10" data-name="10lb Live Lobster Package (~8 Lobsters)">Add to Cart</button>
             </div>
 
             <div class="package">
-                <h3>20 lb Live Maine Lobster</h3>
+                <span class="sale-badge">SAVE $100</span>
+                <h3>20 lb Package (~16 Lobsters)</h3>
                 <p class="package-description">
                     Our best-value box, perfect for large parties, events, or a decadent weekend feast. This is the ultimate celebration package.
                 </p>
                 <ul class="features-list">
-                    <li>Each lobster is ~1.25 lbs</li> <li>Serves approx. 10-14 people</li>
+                    <li>Approx. 16 lobsters (~1.25 lbs each)</li>
+                    <li>Serves approx. 10-14 people</li>
                     <li>Best value per pound</li>
-                    <li>Packed cold and shipped fast</li>
                 </ul>
-                <div class="price" id="price-20lb">$299.00</div>
-                <button class="buy-button" data-price="299" data-weight="20" data-name="20lb Live Maine Lobster Package">Add to Cart</button>
+                <div class="price-box">
+                    <span class="old-price">$399.00</span>
+                    <div class="price">$299.00</div>
+                </div>
+                <button class="buy-button" data-price="299" data-weight="20" data-name="20lb Live Lobster Package (~16 Lobsters)">Add to Cart</button>
             </div>
         </section>
 
-        <div class="shipping-note">
-            <p><strong>Remember the 11:00 AM EST cutoff</strong> for next-day delivery. All orders are confirmed by our team.</p>
-        </div>
+        <section class="shipping-details">
+            <h2>Our Shipping Promise</h2>
+            <p>We pack every order with extreme care in insulated boxes with extra-cold packs to guarantee your lobsters arrive fresh, live, and feisty, regardless of the delivery day.</p>
+            <ul>
+                <li><strong>Monday - Thursday Orders:</strong> Place your order **before 11:00 AM EST** for guaranteed **Next-Day Overnight Delivery**.</li>
+                <li><strong>Friday - Sunday Orders:</strong> Your order will ship for delivery in 1-2 days, depending on carrier schedules. We pack these orders with extra care to ensure peak freshness over the weekend.</li>
+            </ul>
+        </section>
     </main>
 
     <footer>

@@ -4,7 +4,7 @@
 // 1. STATE & CONSTANTS
 // ==================
 let cartItems = []; // Array to store { name, price, quantity } objects
-const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; 
+const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // <-- I've updated this for you.
 
 // ==================
 // 2. DOM REFERENCES
@@ -17,6 +17,7 @@ const closeModalButton = document.getElementById('close-modal-button');
 const continueShoppingButton = document.getElementById('continue-shopping-button');
 const checkoutButton = document.getElementById('checkout-button');
 const cartItemsListElement = document.getElementById('cart-items-list');
+const contactLink = document.getElementById('contact-link'); // <-- ADDED
 
 // ==================
 // 3. FUNCTIONS
@@ -129,15 +130,40 @@ function handleCheckout() {
         paypalURL += `&quantity_${itemNumber}=${item.quantity}`;
     });
 
-    // Add return/cancel URLs (optional, but good practice)
-    // paypalURL += `&return=${window.location.origin}/thank-you.html`; // A "thank you" page
-    // paypalURL += `&cancel_return=${window.location.origin}/cancel.html`; // A "cancelled" page
-
     console.log("Redirecting to PayPal:", paypalURL);
     
     // Send the user to PayPal
     window.location.href = paypalURL;
 }
+
+
+/**
+ * NEW FUNCTION: Handles the contact link click.
+ * Copies the email address to the clipboard and provides user feedback.
+ */
+function handleContactClick(event) {
+    event.preventDefault(); // Stop the '#' link from jumping
+    
+    const email = 'ricky.chenwok@gmail.com';
+    
+    // Use the modern, secure Clipboard API
+    navigator.clipboard.writeText(email).then(() => {
+        // Success!
+        const originalText = contactLink.textContent;
+        contactLink.textContent = 'Email Copied!';
+        
+        // Revert back after 2 seconds
+        setTimeout(() => {
+            contactLink.textContent = originalText;
+        }, 2000);
+    }).catch(err => {
+        // Error (e.g., in a very old browser or if permissions are denied)
+        console.error('Failed to copy email: ', err);
+        // Fallback for old browsers
+        alert('Failed to copy. Email is: ricky.chenwok@gmail.com');
+    });
+}
+
 
 // ==================
 // 4. EVENT LISTENERS
@@ -156,6 +182,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Checkout event
     checkoutButton.addEventListener('click', handleCheckout);
+
+    // ADDED: Contact link click event
+    contactLink.addEventListener('click', handleContactClick);
 
     // Update cart on initial load (to hide '0')
     updateCartIcon();
