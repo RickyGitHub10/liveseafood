@@ -3,7 +3,8 @@
 // ==================
 // 1. STATE & CONSTANTS
 // ==================
-let cartItems = []; // Array to store { name, price, quantity } objects
+// CHANGED (Line 6): Load cart from localStorage or start with an empty array
+let cartItems = JSON.parse(localStorage.getItem('jAndZCart')) || [];
 const PAYPAL_BUSINESS_EMAIL = "ricky.chenwok@gmail.com"; // Your email is set
 
 // ==================
@@ -18,8 +19,8 @@ const continueShoppingButton = document.getElementById('continue-shopping-button
 const checkoutButton = document.getElementById('checkout-button');
 const cartItemsListElement = document.getElementById('cart-items-list');
 const contactLink = document.getElementById('contact-link');
-const hamburgerBtn = document.getElementById('hamburger-btn'); // ADDED (Line 20)
-const mainNav = document.getElementById('main-nav'); // ADDED (Line 21)
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mainNav = document.getElementById('main-nav');
 
 // ==================
 // 3. FUNCTIONS
@@ -35,12 +36,16 @@ function updateCartIcon() {
         totalItems += item.quantity; // Sum the quantities of all items
     });
     
-    cartCountElement.textContent = totalItems;
+    // This check is important because cartCountElement won't exist
+    // if the script is running on a page without the cart icon
+    if (cartCountElement) {
+        cartCountElement.textContent = totalItems;
 
-    if (totalItems === 0) {
-        cartCountElement.style.display = 'none';
-    } else {
-        cartCountElement.style.display = 'block';
+        if (totalItems === 0) {
+            cartCountElement.style.display = 'none';
+        } else {
+            cartCountElement.style.display = 'block';
+        }
     }
 }
 
@@ -64,6 +69,9 @@ function handleBuyClick(event) {
     }
     
     console.log("Cart updated:", cartItems);
+    
+    // NEW (Line 81): Save the updated cart to localStorage
+    localStorage.setItem('jAndZCart', JSON.stringify(cartItems));
     
     // Update the visual icon
     updateCartIcon();
@@ -96,6 +104,9 @@ function hideModal() {
  * Updates the text inside the modal's item list.
  */
 function updateCartItemsList() {
+    // Check if the list element exists
+    if (!cartItemsListElement) return;
+
     if (cartItems.length === 0) {
         cartItemsListElement.innerHTML = "Your cart is currently empty.";
         return;
@@ -195,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         contactLink.addEventListener('click', handleContactClick);
     }
     
-    // NEW Hamburger menu listener (Lines 202-204)
+    // NEW Hamburger menu listener
     if (hamburgerBtn && mainNav) {
         hamburgerBtn.addEventListener('click', () => {
             mainNav.classList.toggle('is-open');
@@ -203,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Update cart on initial load
+    // This now reads from the localStorage cart!
     updateCartIcon();
     
     console.log("J&Z Trade Inc. site initialized.");
