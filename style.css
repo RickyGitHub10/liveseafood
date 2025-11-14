@@ -109,25 +109,24 @@ nav li {
     nav li {
         margin: 0;
         width: 100%;
-        border-top: 1px solid #f0f0f0; /* CHANGED (Line 116) */
+        border-top: 1px solid #f0f0f0; 
     }
     
     nav li:first-child {
-        border-top: none; /* ADDED (Line 119) */
+        border-top: none; 
     }
 
     nav a {
         padding: 15px;
         min-width: auto; /* Override desktop min-width */
-        text-align: center !important; /* ADDED !important (Line 125) */
+        text-align: center !important; 
         display: block; 
-        border-bottom: none !important; /* ADDED !important (Line 127) */
+        border-bottom: none !important; 
     }
 
     nav a.active, nav a:hover {
-        border-bottom: none !important; /* ADDED !important (Line 131) */
+        border-bottom: none !important; 
         background-color: #f8f8f8;
-        /* The desktop blue underline is now gone */
         color: var(--primary-color);
     }
 }
@@ -516,6 +515,33 @@ footer {
     margin: 20px 0;
     text-align: left;
     min-height: 50px;
+}
+
+/* NEW MODAL NOTES (Lines 520-539) */
+.modal-notes-section {
+    margin-top: 15px;
+}
+
+.modal-shipping-note {
+    text-align: center;
+    font-size: 1.1em;
+    color: #006400;
+    background-color: #f0fff0;
+    border: 1px solid #c0eec0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.modal-comment-note {
+    text-align: left;
+    font-size: 0.9em;
+    color: #444;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    line-height: 1.4;
 }
 
 .modal-buttons {
